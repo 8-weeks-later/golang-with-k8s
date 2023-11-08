@@ -1,0 +1,17 @@
+type: object
+properties:
+  take:
+    type: integer
+    format: int32
+  page:
+    type: integer
+    format: int32
+  totalPage:
+    type: integer
+    format: int32
+  currentPage:
+    type: integer
+    format: int32
+  isLast:
+    type: boolean
+

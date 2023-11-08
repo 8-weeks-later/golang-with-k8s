@@ -1,0 +1,34 @@
+
+type: object
+properties:
+  isHide:
+    type: boolean
+    description: 'default false'
+  shortDescription:
+    type: string
+    description: '0 <= len < 50'
+  description:
+    type: string
+    description: '0 <= len < 1000'
+  hashtags:
+    type: array
+    description: 'number of hashtag <= 5'
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+  categories:
+    type: array
+    description: 'optional'
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+  socialLink:
+    type: string
+    description: 'optional, regex https://42born2code.slack.com/team/[a-zA-Z0-9_]+'
+

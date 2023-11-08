@@ -1,0 +1,100 @@
+openapi: 3.1.0
+servers:
+  - description: 42 MANITO API DEV SERVER
+    url: 'https://api.dev.42manito.com/'
+  - description: 42 MANITO API SERVER
+    url: 'https://api.42manito.com/'
+  - description: 42 MANITO API LOCAL TEST
+    url: 'http://localhost:3000'
+
+info:
+  version: '1.0.0'
+  title: 42-manito-api
+  description: 42 manito api server
+
+paths:
+  /auth:
+    $ref: "./paths/auth/auth.yaml"
+  /auth/42:
+    $ref: "./paths/auth/42/42.yaml"
+  /auth/42/callback:
+    $ref: "./paths/auth/42/callback.yaml"
+
+  /users:
+    $ref: "./paths/user/users.yaml"
+  /users/{id}:
+    $ref: "./paths/user/users_id.yaml"
+  /users/{id}/reservations:
+    $ref: "./paths/user/users_reservation.yaml"
+
+  /mentor_profiles:
+    $ref: "./paths/mentor_profiles/mentor_profiles.yaml"
+  /mentor_profiles/{id}:
+    $ref: "./paths/mentor_profiles/mentor_profiles_id.yaml"
+  /mentor_profiles/{id}/activation:
+    $ref: "./paths/mentor_profiles/mentor_profile_activation.yaml"
+
+  /reservations:
+    $ref: "./paths/reservations/reservations.yaml"
+  /reservations/{id}:
+    $ref: "./paths/reservations/reservations_id.yaml"
+  /reservations/{id}/cancel:
+    $ref: "./paths/reservations/reservation_cancel.yaml"
+  /reservations/{id}/accept:
+    $ref: "./paths/reservations/reservation_accept.yaml"
+  /reservations/{id}/check:
+    $ref: "./paths/reservations/reservation_check.yaml"
+  /reservations/{id}/mentor_completion:
+    $ref: "./paths/reservations/reservation_mentor_completion.yaml"
+  /reservations/{id}/mentee_completion:
+    $ref: "./paths/reservations/reservation_mentee_completion.yaml"
+
+  /hashtags:
+    $ref: "./paths/hashtags/hashtags.yaml"
+
+  /mentee_feedbacks:
+    $ref: "./paths/mentee_feedbacks/mentee_feedbacks.yaml"
+  /mentee_feedbacks/{id}:
+    $ref: "./paths/mentee_feedbacks/mentee_feedbacks_id.yaml"
+
+  /mentor_feedbacks:
+    $ref: "./paths/mentor_feedbacks/mentor_feedbacks.yaml"
+  /mentor_feedbacks/{id}:
+    $ref: "./paths/mentor_feedbacks/mentor_feedbacks_id.yaml"
+
+  /categories:
+    $ref: "./paths/categories/categories.yaml"
+
+  /search/mentor/{search_string}:
+    $ref: "./paths/search/search_mentor.yaml"
+
+  /home:
+    $ref: "./paths/home/home.yaml"
+  /home/{category_id}:
+    $ref: "./paths/home/home_category_id.yaml"
+
+components:
+  schemas:
+    $ref: "./schemas/_index.yaml"
+  parameters:
+    $ref: "./parameters/_index.yaml"
+  # responses:
+  #   $ref: "./responses/_index.yaml"
+
+
+  securitySchemes:
+    NormalUser:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'User Role >= USER'
+    OwnerUser:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'User Role >= ResourceOwner'
+    AdminUser:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'User Role >= ADMIN'

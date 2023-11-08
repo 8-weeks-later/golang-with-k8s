@@ -1,0 +1,26 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int32
+  menteeId:
+    type: integer
+    format: int32
+  mentorId:
+    type: integer
+    format: int32
+  reservationId:
+    type: integer
+    format: int32
+  rating:
+    type: number
+    format: float
+  content:
+    type: string
+  createdAt:
+    type: string
+    format: date-time
+  updatedAt:
+    type: string
+    format: date-time
+

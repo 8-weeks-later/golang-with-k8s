@@ -1,0 +1,14 @@
+type: object
+properties:
+  content:
+    type: string
+  createdAt:
+    type: string
+    format: date-time
+  requestedUserId:
+    type: integer
+    format: int32
+  reservationId:
+    type: integer
+    format: int32
+

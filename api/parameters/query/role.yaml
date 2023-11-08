@@ -1,0 +1,10 @@
+in: query
+name: role
+required: false
+description: find matched role reservations (ALL is find ALL)
+schema:
+  default: ALL
+  enum:
+    - MENTOR
+    - MENTEE
+    - ALL

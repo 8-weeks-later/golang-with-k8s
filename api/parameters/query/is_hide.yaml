@@ -1,0 +1,5 @@
+in: query
+name: is_hide
+description: filter by is_hide
+schema:
+  type: boolean

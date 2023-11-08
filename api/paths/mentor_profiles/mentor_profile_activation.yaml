@@ -1,0 +1,32 @@
+patch:
+  summary: Activate or Deactivate mentorProfiles
+  description: |
+    mentorProfile을 활성화/비활성화합니다.
+    활성화 하기 위해선 category/hashtag가 각각 1개 이상 등록되어있어야합니다.
+  tags:
+    - Mentor Profiles
+  security:
+    - OwnerUser: []
+  parameters:
+    - $ref: "../../parameters/path/user.yaml"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/body/mentor_profile/activation.yaml'
+  responses:
+    '200':
+      description: Updated
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/mentor_profiles/get.yaml"
+    '400':
+      description: |
+        activation: 카테고리는 최소 1개 이상 선택해주세요.  
+        activation: 해시태그는 최소 1개 이상 선택해주세요.  
+    '404':
+      description: |
+        업데이트할 프로필이 없습니다.
+

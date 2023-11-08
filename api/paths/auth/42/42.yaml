@@ -1,0 +1,12 @@
+get:
+  summary: 42 OAuth2 (redirected to 42 API)
+  tags:
+    - Auth
+  responses:
+    '301':
+      description: Moved Permanently (OK)
+    '302':
+      description: Found (OK)
+    '401':
+      description: Unauthorized (API verification failed)
+

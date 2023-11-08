@@ -1,0 +1,20 @@
+type: object
+properties:
+  content:
+    items:
+      $ref: './get.yaml'
+  page:
+    $ref: '../common/page.yaml'
+example:
+  content:
+    - id: 0
+      name: 'test1'
+    - id: 1
+      name: 'test2'
+  page:
+    take: 0
+    page: 0
+    totalPage: 0
+    currentPage: 0
+    isLast: false
+

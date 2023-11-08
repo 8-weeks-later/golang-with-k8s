@@ -1,0 +1,8 @@
+type: object
+properties:
+  uid:
+    type: integer
+    description: 'user id'
+  accessToken:
+    type: string
+    description: 'required'

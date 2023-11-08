@@ -1,0 +1,8 @@
+type: object
+properties:
+  content:
+    items:
+      $ref: '../reservations/get.yaml'
+  page:
+    $ref: '../common/page.yaml'
+

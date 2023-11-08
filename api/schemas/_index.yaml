@@ -1,0 +1,88 @@
+AuthGet:
+  $ref: "./auth/authget.yaml"
+AuthCallbackGet:
+  $ref: "./auth/authcallbackget.yaml"
+
+CategoryGet:
+  $ref: "./categories/get.yaml"
+
+Page:
+  $ref: "./common/page.yaml"
+
+HashtagId:
+  $ref: "./hashtags/id.yaml"
+HashtagGet:
+  $ref: "./hashtags/get.yaml"
+HashtagPagination:
+  $ref: "./hashtags/pagination.yaml"
+HashtagCreate:
+  $ref: "./hashtags/create.yaml"
+
+HomeGet:
+  $ref: "./home/get.yaml"
+HomeSimpleUser:
+  $ref: "./home/user.yaml"
+
+MenteeFeedbackGet:
+  $ref: "./mentee_feedbacks/get.yaml"
+MenteeFeedbackCreate:
+  $ref: "./mentee_feedbacks/create.yaml"
+MenteeFeedbackPagintaion:
+  $ref: "./mentee_feedbacks/pagination.yaml"
+
+
+MentorFeedbackGet:
+  $ref: "./mentor_feedbacks/get.yaml"
+MentorFeedbackCreate:
+  $ref: "./mentor_feedbacks/create.yaml"
+MentorFeedbackPagintaion:
+  $ref: "./mentor_feedbacks/pagination.yaml"
+
+MentorProfileGet:
+  $ref: "./mentor_profiles/get.yaml"
+MentorProfileCreate:
+  $ref: "./mentor_profiles/create.yaml"
+MentorProfilePagintaion:
+  $ref: "./mentor_profiles/pagination.yaml"
+MentorProfileSimpleGet:
+  $ref: "./mentor_profiles/simpleget.yaml"
+
+ReservationGet:
+  $ref: "./reservations/get.yaml"
+ReservationCancelReason:
+  $ref: "./reservations/cancel_reason.yaml"
+ReservationPagintaion:
+  $ref: "./reservations/pagination.yaml"
+
+UserGet:
+  $ref: "./users/get.yaml"
+UserCreate:
+  $ref: "./users/create.yaml"
+UserReservationPagination:
+  $ref: "./users/reservation_pagination.yaml"
+
+
+#body
+HashtagUpdateBody:
+  $ref: "./body/hashtag/update.yaml"
+
+MentorProfileUpdateBody:
+  $ref: "./body/mentor_profile/update.yaml"
+MentorProfileActivationBody:
+  $ref: "./body/mentor_profile/activation.yaml"
+
+ReservationCancelBody:
+  $ref: "./body/reservations/cancel.yaml"
+ReservationCreateBody:
+  $ref: "./body/reservations/create.yaml"
+ReservationUpdateBody:
+  $ref: "./body/reservations/update.yaml"
+ReservationCompleteMenteeBody:
+  $ref: "./body/reservations/complete_mentee.yaml"
+ReservationCompleteMentorBody:
+  $ref: "./body/reservations/complete_mentor.yaml"
+
+UsersCreateBody:
+  $ref: "./body/users/create.yaml"
+UsersUpdateBody:
+  $ref: "./body/users/update.yaml"
