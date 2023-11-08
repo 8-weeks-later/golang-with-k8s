@@ -1,35 +1,28 @@
 package main
 
 import (
-	"fmt"
-	"golang-with-k8s/cmd/api-server/internal/routes"
-	"golang-with-k8s/pkg/config"
-	"log"
+	ApiServer "golang-with-k8s/cmd/api-server/internal"
+	api_server "golang-with-k8s/generated/api-server"
 
+	//database 초기화
+	_ "golang-with-k8s/pkg/database"
+
+	"github.com/labstack/echo-contrib/echoprometheus"
 	"github.com/labstack/echo/v4"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
 )
 
 func main() {
+
 	e := echo.New()
+	//logger
+	// e.Use(echomiddleware.Logger())
 
-	// Init Config
-	conf, err := config.NewDatabaseConfig(".env.db", []string{"URL"})
-	if err != nil {
-		log.Fatal(err)
-	}
+	server := ApiServer.NewServer()
 
-	// Init DB
-	db, err := gorm.Open(mysql.Open(conf.Config.Get("URL")), &gorm.Config{})
-	if err != nil {
-		log.Fatal(err)
-	}
+	api_server.RegisterHandlers(e, server)
 
-	fmt.Println(db)
-	// Init Repositories
+	e.Use(echoprometheus.NewMiddleware("myapp"))   // adds middleware to gather metrics
+	e.GET("/metrics", echoprometheus.NewHandler()) // adds route to serve gathered metrics
 
-	// Init Routes
-	routes.InitUserRoutes(e)
 	e.Logger.Fatal(e.Start(":10001"))
 }

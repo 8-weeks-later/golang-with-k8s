@@ -4,6 +4,8 @@ type DatabaseConfig struct {
 	Config *config
 }
 
+var DatabaseConf *DatabaseConfig
+
 /**
 * @brief get new database config
 *
@@ -12,14 +14,17 @@ type DatabaseConfig struct {
 *
 * @return
  */
-func NewDatabaseConfig(envFilePath string, keys []string) (*DatabaseConfig, error) {
+func init() {
 
-	conf, err := NewConfig(&envFilePath, keys)
+	path := ".env.db"
+
+	conf, err := NewConfig(&path, []string{"URL"})
+
 	if err != nil {
-		return nil, err
+		panic("Error loading .env file")
 	}
 
-	return &DatabaseConfig{
+	DatabaseConf = &DatabaseConfig{
 		Config: conf,
-	}, nil
+	}
 }

@@ -13,11 +13,11 @@ type User struct {
 	UpdatedAt           *time.Time
 	MentorProfile       *MentorProfile
 	MentorProfileId     *int
-	MenteeReservations  []Reservation
-	MentorReservations  []Reservation
-	MenteeFeedbacksTo   []MenteeFeedback
-	MenteeFeedbacksFrom []MentorFeedback
-	MentorFeedbacksTo   []MentorFeedback
-	MentorFeedbacksFrom []MenteeFeedback
-	CancelReasons       []CancelReason
+	MenteeReservations  []Reservation    `gorm:"foreignKey:MenteeId"`
+	MentorReservations  []Reservation    `gorm:"foreignKey:MentorId"`
+	MenteeFeedbacksTo   []MenteeFeedback `gorm:"foreignKey:MenteeId"`
+	MenteeFeedbacksFrom []MentorFeedback `gorm:"foreignKey:MentorId"`
+	MentorFeedbacksTo   []MentorFeedback `gorm:"foreignKey:MentorId"`
+	MentorFeedbacksFrom []MenteeFeedback `gorm:"foreignKey:MenteeId"`
+	CancelReasons       []CancelReason   `gorm:"foreignKey:RequestedUserId"`
 }
