@@ -1,8 +1,0 @@
-type: object
-properties:
-  content:
-    items:
-      $ref: '../mentor_profiles/get.yaml'
-  page:
-    $ref: '../common/page.yaml'
-

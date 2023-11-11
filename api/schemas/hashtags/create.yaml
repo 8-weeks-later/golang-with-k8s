@@ -1,8 +1,0 @@
-type: object
-properties:
-  name:
-    type: string
-    description: 'required, 0 < len < 20'
-required:
-  - name
-

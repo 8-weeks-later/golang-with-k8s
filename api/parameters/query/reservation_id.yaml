@@ -1,6 +1,0 @@
-in: query
-name: reservation_id
-description: filter by reservation_id
-schema:
-  type: integer
-  format: int32

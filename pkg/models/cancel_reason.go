@@ -6,8 +6,8 @@ type CancelReason struct {
 	ID              int
 	Content         string
 	CreatedAt       time.Time
-	RequestUser     User `gorm:"foreignKey:RequestedUserId"`
+	RequestUser     User
 	RequestedUserId int
-	Reservation     Reservation `gorm:"foreignKey:ReservationId"`
+	Reservation     Reservation
 	ReservationId   int
 }

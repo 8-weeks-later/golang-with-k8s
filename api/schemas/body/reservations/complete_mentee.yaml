@@ -1,9 +1,0 @@
-type: object
-properties:
-  rating:
-    type: number
-    description: 'rating, 0.5 * n, (0 <= n < 10) '
-  content:
-    description: 'reservation feedback, (length <= 300)'
-    type: string
-

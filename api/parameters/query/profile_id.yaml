@@ -1,6 +1,0 @@
-in: query
-name: profile_id
-description: filter by profile_id
-schema:
-  type: integer
-  format: int32

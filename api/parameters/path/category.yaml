@@ -1,6 +1,0 @@
-in: path
-name: category_id
-required: true
-description: 'category id'
-schema:
-  type: integer

@@ -1,7 +1,0 @@
-name: id
-in: path
-required: true
-description: user id
-schema:
-  type: integer
-  format: int32

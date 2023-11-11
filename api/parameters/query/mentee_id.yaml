@@ -1,6 +1,0 @@
-in: query
-name: mentee_id
-description: filter by mentee_id
-schema:
-  type: integer
-  format: int32

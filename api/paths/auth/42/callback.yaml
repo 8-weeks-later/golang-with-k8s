@@ -1,9 +1,0 @@
-get:
-  summary: 42 OAuth2 callback (verify or create user and return token)
-  tags:
-    - Auth
-  responses:
-    '302':
-      description: Redirect to front home
-    '401':
-      description: Unauthorized

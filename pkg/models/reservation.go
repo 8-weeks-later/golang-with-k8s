@@ -14,8 +14,8 @@ type Reservation struct {
 	Status         ReservationStatus
 	CreatedAt      time.Time
 	UpdatedAt      *time.Time
-	Hashtags       []Hashtag       `gorm:"many2many:hashtag_reservations;"`
-	MentorFeedback *MentorFeedback `gorm:"foreignKey:ReservationId"`
-	MenteeFeedback *MenteeFeedback `gorm:"foreignKey:ReservationId"`
-	CancelReason   *CancelReason   `gorm:"foreignKey:ReservationId"`
+	Hashtags       []Hashtag
+	MentorFeedback *MentorFeedback
+	MenteeFeedback *MenteeFeedback
+	CancelReason   *CancelReason
 }

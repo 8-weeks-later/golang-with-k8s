@@ -1,40 +1,51 @@
 package config
 
 import (
-	"log"
 	"os"
 
 	"github.com/joho/godotenv"
 )
 
+type IConfig interface {
+	Get(key string) string
+	loadEnvfile(envfilePath *string, keys []string)
+	initConfig()
+}
+
 type config struct {
 	Env map[string]string
 }
 
-func NewConfig(envFilePath *string, keys []string) (*config, error) {
-	c := &config{}
-	c, err := c.InitConfig(envFilePath, keys)
-	if err != nil {
-		log.Fatal("Error loading .env file")
-		return nil, err
-	}
-	return c, nil
-}
+var ConfigInstance IConfig
 
-func (c *config) InitConfig(envFilePath *string, keys []string) (*config, error) {
-	err := godotenv.Load(*envFilePath)
+func (c *config) loadEnvfile(envfilePath *string, keys []string) {
+	err := godotenv.Load(*envfilePath)
 	if err != nil {
 		panic("Error loading .env file")
 	}
-
-	c.Env = make(map[string]string)
 	for _, key := range keys {
 		c.Env[key] = os.Getenv(key)
 	}
-
-	return c, nil
 }
 
 func (c *config) Get(key string) string {
 	return c.Env[key]
+}
+
+func (c *config) initConfig() {
+	c.Env = make(map[string]string)
+}
+
+func init() {
+	ConfigInstance = new(config)
+	ConfigInstance.initConfig()
+
+	envFilePath := ".env.auth"
+	ConfigInstance.loadEnvfile(&envFilePath, []string{"GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET", "GOOGLE_LOGIN_CALLBACK"})
+
+	envFilePath = ".env.db"
+	ConfigInstance.loadEnvfile(&envFilePath, []string{"URL"})
+
+	envFilePath = ".env.secrets"
+	ConfigInstance.loadEnvfile(&envFilePath, []string{"SESSION_SECRET"})
 }

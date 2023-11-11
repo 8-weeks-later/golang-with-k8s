@@ -1,5 +1,0 @@
-in: query
-name: search
-description: search by hashtag (%LIKE%)
-schema:
-  type: string

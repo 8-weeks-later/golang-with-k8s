@@ -1,6 +1,0 @@
-in: query
-name: mentor_id
-description: filter by mentor_id
-schema:
-  type: integer
-  format: int32

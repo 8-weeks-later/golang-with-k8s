@@ -1,8 +1,8 @@
 package models
 
 type Category struct {
-	ID             int
-	Name           string
-	MentorProfiles []MentorProfile `gorm:"many2many:category_mentorProfiles;"`
-	Reservations   []Reservation   `gorm:"foreignKey:CategoryId"`
+	ID   int    `db:"id"`
+	Name string `db:"name"`
+	// MentorProfiles []MentorProfile
+	// Reservations   []Reservation
 }
