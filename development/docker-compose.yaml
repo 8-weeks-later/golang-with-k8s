@@ -1,7 +1,18 @@
 version: "3.8"
 
-
 services:
+  postgres:
+    container_name: glang
+    build: pgloader
+    ports:
+      - '5432:5432' #http://localhost:5555
+    environment:
+      POSTGRES_USER: manito
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: manito
+    networks:
+      - backend
+
   mysql:
     image: mysql:8.0.33
     container_name: glang_dev
@@ -11,11 +22,13 @@ services:
       MYSQL_DATABASE: manito
       MYSQL_USER: manito
       MYSQL_PASSWORD: 1234
+      DEFAULT_AUTHENTICATION_PLUGIN: mysql_native_password
+    command: 
+      - --default-authentication-plugin=mysql_native_password
     ports:
       - '3306:3306'
     networks:
       - backend
-
 networks:
   backend:
     driver: bridge

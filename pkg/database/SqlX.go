@@ -5,6 +5,7 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq"
 )
 
 var SqlX *sqlx.DB
@@ -12,7 +13,7 @@ var SqlX *sqlx.DB
 func init() {
 
 	var err error
-	SqlX, err = sqlx.Open("mysql", config.ConfigInstance.Get("URL"))
+	SqlX, err = sqlx.Open("postgres", config.ConfigInstance.Get("URL"))
 	if err != nil {
 		panic(err.Error())
 	}
