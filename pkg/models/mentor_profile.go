@@ -1,16 +1,20 @@
 package models
 
-import "time"
+import (
+	"time"
+
+	"github.com/lib/pq"
+)
 
 type MentorProfile struct {
-	ID               int `db:"id"`
-	UserID           int `db:"user_id"`
-	User             User
-	ShortDescription string    `db:"shortDescription"`
-	Description      string    `db:"description"`
-	IsHide           bool      `db:"isHide"`
-	MentoringCount   int       `db:"mentoring_count"`
-	CreatedAt        time.Time `db:"created_at"`
-	UpdatedAt        time.Time `db:"updated_at"`
-	SocialLink       string    `db:"socialLink"`
+	ID               int            `json:"id,omitempty" db:"id"`
+	ShortDescription *string        `json:"shortDescription,omitempty" db:"shortDescription"`
+	Description      *string        `json:"description,omitempty" db:"description"`
+	IsHide           *bool          `json:"isHide,omitempty" db:"isHide,omitempty"`
+	MentoringCount   *int32         `json:"mentoringCount,omitempty" db:"mentoring_count,omitempty"`
+	CreatedAt        *time.Time     `json:"createdAt,omitempty" db:"created_at,omitempty"`
+	UpdatedAt        *time.Time     `json:"updatedAt,omitempty" db:"updated_at,omitempty"`
+	SocialLink       *string        `json:"socialLink,omitempty" db:"socialLink,omitempty"`
+	Hashtags         pq.StringArray `json:"hashtags,omitempty" db:"hashtags,omitempty"`
+	Categories       pq.StringArray `json:"categories,omitempty" db:"categories,omitempty"`
 }

@@ -11,7 +11,6 @@ import (
 	"github.com/gorilla/sessions"
 	"github.com/labstack/echo-contrib/echoprometheus"
 	"github.com/labstack/echo-contrib/session"
-	echojwt "github.com/labstack/echo-jwt"
 	"github.com/labstack/echo/v4"
 )
 
@@ -30,9 +29,9 @@ func main() {
 	// session
 	e.Use(session.Middleware(sessions.NewCookieStore([]byte(config.ConfigInstance.Get("SESSION_SECRET")))))
 	// jwt
-	e.Use(echojwt.WithConfig(echojwt.Config{
-		SigningKey: []byte(config.ConfigInstance.Get("JWT_SECRET")),
-	}))
+	// e.Use(echojwt.WithConfig(echojwt.Config{
+	// 	SigningKey: []byte(config.ConfigInstance.Get("JWT_SECRET")),
+	// }))
 
 	e.GET("/metrics", echoprometheus.NewHandler()) // adds route to serve gathered metrics
 

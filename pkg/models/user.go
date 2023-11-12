@@ -1,16 +1,16 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 type User struct {
-	ID              int        `db:"id"`
-	Email           string     `db:"email"`
-	Nickname        string     `db:"nickname"`
-	ProfileImage    string     `db:"profile_image"`
-	Role            UserRole   `db:"role"`
-	MentoringCount  int        `db:"mentoring_count"`
-	CreatedAt       *time.Time `db:"created_at"`
-	UpdatedAt       *time.Time `db:"updated_at"`
-	MentorProfile   *MentorProfile
-	MentorProfileId *int `db:"mentor_profile_id"`
+	ID            int            `json:"id,omitempty" db:"id"`
+	Email         *string        `json:"email,omitempty" db:"email"`
+	Nickname      *string        `json:"nickname,omitempty" db:"nickname"`
+	ProfileImage  *string        `json:"profileImage,omitempty" db:"profile_image"`
+	Role          *UserRole      `json:"role,omitempty" db:"role"`
+	CreatedAt     *time.Time     `json:"createdAt,omitempty" db:"created_at"`
+	UpdatedAt     *time.Time     `json:"updatedAt,omitempty" db:"updated_at"`
+	MentorProfile *MentorProfile `json:"mentorProfile,omitempty"`
 }
