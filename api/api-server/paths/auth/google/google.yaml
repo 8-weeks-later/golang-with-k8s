@@ -1,0 +1,12 @@
+get:
+  summary: Google OAuth2 (redirected to Google API)
+  tags:
+    - Auth
+  responses:
+    '301':
+      description: Moved Permanently (OK)
+    '302':
+      description: Found (OK)
+    '401':
+      description: Unauthorized (API verification failed)
+

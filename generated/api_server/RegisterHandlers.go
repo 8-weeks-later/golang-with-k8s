@@ -18,6 +18,8 @@ func registerHandlersWithBaseURL(router EchoRouter, si ServerInterface, baseURL 
 	router.GET(baseURL+"/auth", wrapper.GetAuth)
 	router.GET(baseURL+"/auth/google", wrapper.GetAuthGoogle)
 	router.GET(baseURL+"/auth/google/callback", wrapper.GetAuthGoogleCallback)
+	router.GET(baseURL+"/auth/42", wrapper.GetAuth42)
+	router.GET(baseURL+"/auth/42/callback", wrapper.GetAuth42Callback)
 	router.GET(baseURL+"/categories", wrapper.GetCategories)
 	router.GET(baseURL+"/hashtags", wrapper.GetHashtags)
 	router.POST(baseURL+"/hashtags", wrapper.PostHashtags)

@@ -1,0 +1,6 @@
+in: path
+name: search_string
+required: true
+description: 'search mentor profiles that contains search string in nickname or hashtags'
+schema:
+  type: string

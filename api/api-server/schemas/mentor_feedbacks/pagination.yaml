@@ -1,0 +1,8 @@
+type: object
+properties:
+  content:
+    items:
+      $ref: '../../schemas/mentor_feedbacks/get.yaml'
+  page:
+    $ref: '../common/page.yaml'
+

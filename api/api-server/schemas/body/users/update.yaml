@@ -1,0 +1,6 @@
+type: object
+properties:
+  profileImage:
+    type: string
+    description: 'optional'
+

@@ -678,6 +678,12 @@ type ServerInterface interface {
 	// verify access token
 	// (GET /auth)
 	GetAuth(ctx echo.Context) error
+	// FT OAuth2 (redirected to FT API)
+	// (GET /auth/42)
+	GetAuth42(ctx echo.Context) error
+	// Google FT callback (verify or create user and return token)
+	// (GET /auth/42/callback)
+	GetAuth42Callback(ctx echo.Context) error
 	// Google OAuth2 (redirected to Google API)
 	// (GET /auth/google)
 	GetAuthGoogle(ctx echo.Context) error
@@ -789,6 +795,24 @@ func (w *ServerInterfaceWrapper) GetAuth(ctx echo.Context) error {
 
 	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.GetAuth(ctx)
+	return err
+}
+
+// GetAuth42 converts echo context to params.
+func (w *ServerInterfaceWrapper) GetAuth42(ctx echo.Context) error {
+	var err error
+
+	// Invoke the callback with all the unmarshaled arguments
+	err = w.Handler.GetAuth42(ctx)
+	return err
+}
+
+// GetAuth42Callback converts echo context to params.
+func (w *ServerInterfaceWrapper) GetAuth42Callback(ctx echo.Context) error {
+	var err error
+
+	// Invoke the callback with all the unmarshaled arguments
+	err = w.Handler.GetAuth42Callback(ctx)
 	return err
 }
 
@@ -1569,6 +1593,8 @@ func RegisterHandlersWithBaseURL(router EchoRouter, si ServerInterface, baseURL 
 	}
 
 	router.GET(baseURL+"/auth", wrapper.GetAuth)
+	router.GET(baseURL+"/auth/42", wrapper.GetAuth42)
+	router.GET(baseURL+"/auth/42/callback", wrapper.GetAuth42Callback)
 	router.GET(baseURL+"/auth/google", wrapper.GetAuthGoogle)
 	router.GET(baseURL+"/auth/google/callback", wrapper.GetAuthGoogleCallback)
 	router.GET(baseURL+"/categories", wrapper.GetCategories)

@@ -1,0 +1,20 @@
+type: object
+description: 'only for admin'
+properties:
+  email:
+    type: string
+    format: email
+    description: 'required'
+  nickname:
+    type: string
+    description: 'required'
+  profileImage:
+    type: string
+    description: 'required'
+  role:
+    description: 'required'
+    type: string
+    format: enum
+    enum:
+      - ADMIN
+      - USER

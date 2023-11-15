@@ -1,0 +1,27 @@
+type: object
+properties:
+  menteeId:
+    type: integer
+    format: int32
+    description: 'required, mentee id'
+  mentorId:
+    type: integer
+    format: int32
+    description: 'required, mentor id'
+  reservationId:
+    type: integer
+    format: int32
+    description: 'required, reservation id'
+  rating:
+    type: number
+    format: float
+    description: 'required, 0 <= rating <= 5'
+  content:
+    type: string
+    description: 'optional, 0 < len < 1000'
+required:
+  - menteeId
+  - mentorId
+  - reservationId
+  - rating
+

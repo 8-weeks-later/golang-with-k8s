@@ -49,6 +49,28 @@ paths:
           description: Redirect to front home
         '401':
           description: Unauthorized
+  /auth/42:
+    get:
+      summary: FT OAuth2 (redirected to FT API)
+      tags:
+        - Auth
+      responses:
+        '301':
+          description: Moved Permanently (OK)
+        '302':
+          description: Found (OK)
+        '401':
+          description: Unauthorized (API verification failed)
+  /auth/42/callback:
+    get:
+      summary: Google FT callback (verify or create user and return token)
+      tags:
+        - Auth
+      responses:
+        '302':
+          description: Redirect to front home
+        '401':
+          description: Unauthorized
   /users:
     get:
       summary: Get all users

@@ -1,0 +1,19 @@
+get:
+  summary: Get a mentor feedback by ID
+  tags:
+    - Mentor Feedbacks
+  security:
+    - NormalUser: []
+  parameters:
+    - $ref: "../../parameters/path/id.yaml"
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/mentor_feedbacks/get.yaml'
+    '400':
+      description: Invalid request parameter id
+    '404':
+      description: Mentor feedback not found

@@ -1,0 +1,18 @@
+in: query
+name: status
+description: find matched status reservations
+schema:
+  type: array
+  default: [REQUEST, ACCEPT, MENTEE_CHECKED, MENTEE_FEEDBACK, DONE, CANCEL]
+  items:
+    type: string
+    enum:
+      - REQUEST
+      - ACCEPT
+      - MENTEE_CHECKED
+      - MENTEE_FEEDBACK
+      - DONE
+      - CANCEL
+    minItems: 1
+    maxItems: 6
+explode: false

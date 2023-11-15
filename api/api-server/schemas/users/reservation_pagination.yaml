@@ -1,0 +1,9 @@
+type: object
+properties:
+  content:
+    type: array
+    items:
+      $ref: '../reservations/get.yaml'
+  page:
+    $ref: '../common/page.yaml'
+

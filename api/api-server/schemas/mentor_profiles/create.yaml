@@ -1,0 +1,7 @@
+type: object
+properties:
+  userId:
+    type: integer
+    format: int32
+    description: 'required, user id'
+

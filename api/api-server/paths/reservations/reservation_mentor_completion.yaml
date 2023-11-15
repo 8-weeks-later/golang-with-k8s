@@ -1,0 +1,31 @@
+patch:
+  summary: complete reservation as mentor
+  description: |
+    **ROLE**\
+    \
+    only for `mentor` user that related with reservation
+  tags:
+    - Reservations
+  security:
+    - OwnerUser: []
+  parameters:
+    - $ref: "../../parameters/path/reservation.yaml"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/body/reservations/complete_mentor.yaml'
+  responses:
+    '200':
+      description: Updated
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/reservations/get.yaml'
+    '400':
+      description: Invalid request body
+    '401':
+      description: Unauthorized
+    '409':
+      description: already exists

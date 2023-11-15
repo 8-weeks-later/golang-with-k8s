@@ -1,0 +1,6 @@
+in: query
+name: category_id
+description: filter by category
+schema:
+  type: integer
+  format: int32

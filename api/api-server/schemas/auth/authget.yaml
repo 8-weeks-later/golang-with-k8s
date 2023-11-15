@@ -1,0 +1,17 @@
+type: object
+properties:
+  id:
+    type: number
+    description: 'required'
+  nickname:
+    type: string
+    description: 'required'
+  profileImage:
+    type: string
+    description: 'required'
+  role:
+    type: string
+    format: enum
+    enum:
+      - ADMIN
+      - USER

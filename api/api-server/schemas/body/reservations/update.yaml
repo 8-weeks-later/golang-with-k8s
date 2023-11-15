@@ -1,0 +1,24 @@
+type: object
+properties:
+  requestMessage:
+    type: string
+    description: 'optional, request message'
+  status:
+    description: 'optional, status'
+    type: string
+    format: enum
+    enum:
+      - 'REQUESTED'
+      - 'ACCEPTED'
+      - 'FINISHED'
+      - 'CANCELED'
+  categoryId:
+    type: integer
+    format: int32
+    description: 'optional, category id'
+  hashtags:
+    type: array
+    description: 'optional, hashtags item max 5'
+    items:
+      $ref: '../hashtag/update.yaml'
+

@@ -1,0 +1,22 @@
+type: object
+properties:
+  content:
+    type: string
+    x-oapi-codegen-extra-tags:
+      db: "content"
+  createdAt:
+    type: string
+    format: date-time
+    x-oapi-codegen-extra-tags:
+      db: "created_at"
+  requestedUserId:
+    type: integer
+    format: int32
+    x-oapi-codegen-extra-tags:
+      db: "requested_user_id"
+  reservationId:
+    type: integer
+    format: int32
+    x-oapi-codegen-extra-tags:
+      db: "reservation_id"
+

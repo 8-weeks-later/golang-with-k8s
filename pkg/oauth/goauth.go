@@ -24,3 +24,13 @@ func init() {
 func GetGoogleLoginUrl(state string) string {
 	return GoauthInstance.AuthCodeURL(state)
 }
+
+type GoogleUser struct {
+	Email        string `json:"email"`
+	ProfileImage string `json:"image.versions.medium"`
+	NickName     string `json:"login"`
+}
+
+func (u *GoogleUser) GetManitoUser() *ManitoUser {
+	return &ManitoUser{}
+}

@@ -1,0 +1,27 @@
+type: object
+properties:
+  take:
+    type: integer
+    format: int32
+    x-oapi-codegen-extra-tags:
+      db: "take"
+  page:
+    type: integer
+    format: int32
+    x-oapi-codegen-extra-tags:
+      db: "page"
+  totalPage:
+    type: integer
+    format: int32
+    x-oapi-codegen-extra-tags:
+      db: "total_page"
+  currentPage:
+    type: integer
+    format: int32
+    x-oapi-codegen-extra-tags:
+      db: "current_page"
+  isLast:
+    type: boolean
+    x-oapi-codegen-extra-tags:
+      db: "is_last"
+

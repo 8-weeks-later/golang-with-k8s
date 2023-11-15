@@ -1,0 +1,7 @@
+in: query
+name: hashtag_id
+description: filter by hashtag
+schema:
+  type: integer
+  format: int32
+

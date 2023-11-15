@@ -92,6 +92,12 @@ type ClientInterface interface {
 	// GetAuth request
 	GetAuth(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GetAuth42 request
+	GetAuth42(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetAuth42Callback request
+	GetAuth42Callback(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GetAuthGoogle request
 	GetAuthGoogle(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -215,6 +221,30 @@ type ClientInterface interface {
 
 func (c *Client) GetAuth(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetAuthRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetAuth42(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetAuth42Request(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetAuth42Callback(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetAuth42CallbackRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -763,6 +793,60 @@ func NewGetAuthRequest(server string) (*http.Request, error) {
 	}
 
 	operationPath := fmt.Sprintf("/auth")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetAuth42Request generates requests for GetAuth42
+func NewGetAuth42Request(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/auth/42")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetAuth42CallbackRequest generates requests for GetAuth42Callback
+func NewGetAuth42CallbackRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/auth/42/callback")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -2569,6 +2653,12 @@ type ClientWithResponsesInterface interface {
 	// GetAuthWithResponse request
 	GetAuthWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetAuthResponse, error)
 
+	// GetAuth42WithResponse request
+	GetAuth42WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetAuth42Response, error)
+
+	// GetAuth42CallbackWithResponse request
+	GetAuth42CallbackWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetAuth42CallbackResponse, error)
+
 	// GetAuthGoogleWithResponse request
 	GetAuthGoogleWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetAuthGoogleResponse, error)
 
@@ -2706,6 +2796,48 @@ func (r GetAuthResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetAuthResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetAuth42Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r GetAuth42Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetAuth42Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetAuth42CallbackResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r GetAuth42CallbackResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetAuth42CallbackResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -3423,6 +3555,24 @@ func (c *ClientWithResponses) GetAuthWithResponse(ctx context.Context, reqEditor
 	return ParseGetAuthResponse(rsp)
 }
 
+// GetAuth42WithResponse request returning *GetAuth42Response
+func (c *ClientWithResponses) GetAuth42WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetAuth42Response, error) {
+	rsp, err := c.GetAuth42(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetAuth42Response(rsp)
+}
+
+// GetAuth42CallbackWithResponse request returning *GetAuth42CallbackResponse
+func (c *ClientWithResponses) GetAuth42CallbackWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetAuth42CallbackResponse, error) {
+	rsp, err := c.GetAuth42Callback(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetAuth42CallbackResponse(rsp)
+}
+
 // GetAuthGoogleWithResponse request returning *GetAuthGoogleResponse
 func (c *ClientWithResponses) GetAuthGoogleWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetAuthGoogleResponse, error) {
 	rsp, err := c.GetAuthGoogle(ctx, reqEditors...)
@@ -3828,6 +3978,38 @@ func ParseGetAuthResponse(rsp *http.Response) (*GetAuthResponse, error) {
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseGetAuth42Response parses an HTTP response from a GetAuth42WithResponse call
+func ParseGetAuth42Response(rsp *http.Response) (*GetAuth42Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetAuth42Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseGetAuth42CallbackResponse parses an HTTP response from a GetAuth42CallbackWithResponse call
+func ParseGetAuth42CallbackResponse(rsp *http.Response) (*GetAuth42CallbackResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetAuth42CallbackResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
