@@ -12,6 +12,7 @@ import (
 	"github.com/labstack/echo-contrib/echoprometheus"
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
@@ -21,7 +22,10 @@ func main() {
 	// e.Use(echomiddleware.Logger())
 
 	server := internal.NewServer()
-	api_server.RegisterHandlers(e, server)
+	api_server.ApiServerRegisterHandlers(e, server)
+
+	//cors
+	e.Use(middleware.CORSWithConfig(middleware.DefaultCORSConfig))
 
 	// middlewares
 	// prometheus

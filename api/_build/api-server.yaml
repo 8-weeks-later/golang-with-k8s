@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.0.0
 servers:
   - description: 42 MANITO API DEV SERVER
     url: 'https://api.dev.42manito.com/'
@@ -821,31 +821,47 @@ components:
         id:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: id
         name:
           type: string
+          x-oapi-codegen-extra-tags:
+            db: name
     Page:
       type: object
       properties:
         take:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: take
         page:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: page
         totalPage:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: total_page
         currentPage:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: current_page
         isLast:
           type: boolean
+          x-oapi-codegen-extra-tags:
+            db: is_last
     HashtagId:
       type: object
       properties:
         id:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: id
     HashtagGet:
       type: object
       properties:
@@ -928,26 +944,42 @@ components:
         id:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: id
         menteeId:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: mentee_id
         mentorId:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: mentor_id
         reservationId:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: reservation_id
         rating:
           type: number
           format: float
+          x-oapi-codegen-extra-tags:
+            db: rating
         content:
           type: string
+          x-oapi-codegen-extra-tags:
+            db: content
         createdAt:
           type: string
           format: date-time
+          x-oapi-codegen-extra-tags:
+            db: created_at
         updatedAt:
           type: string
           format: date-time
+          x-oapi-codegen-extra-tags:
+            db: updated_at
     MenteeFeedbackCreate:
       type: object
       properties:
@@ -989,24 +1021,38 @@ components:
         id:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: id
         menteeId:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: mentee_id
         mentorId:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: mentor_id
         reservationId:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: reservation_id
         rating:
           type: number
           format: float
+          x-oapi-codegen-extra-tags:
+            db: rating
         createdAt:
           type: string
           format: date-time
+          x-oapi-codegen-extra-tags:
+            db: created_at
         updatedAt:
           type: string
           format: date-time
+          x-oapi-codegen-extra-tags:
+            db: updated_at
     MentorFeedbackCreate:
       type: object
       properties:
@@ -1048,43 +1094,71 @@ components:
         id:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: id
         userId:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: user_id
         shortDescription:
           type: string
+          x-oapi-codegen-extra-tags:
+            db: shortDescription
         description:
           type: string
+          x-oapi-codegen-extra-tags:
+            db: description
         isHide:
           type: boolean
+          x-oapi-codegen-extra-tags:
+            db: isHide
         mentoringCount:
           type: integer
+          x-oapi-codegen-extra-tags:
+            db: mentoring_count
         createdAt:
           type: string
           format: date-time
+          x-oapi-codegen-extra-tags:
+            db: created_at
         updatedAt:
           type: string
           format: date-time
+          x-oapi-codegen-extra-tags:
+            db: updated_at
         hashtags:
-          type: array
+          x-go-type: pq.StringArray
+          x-go-type-import:
+            path: github.com/lib/pq
           items:
             $ref: '#/components/schemas/HashtagGet'
         categories:
-          type: array
+          x-go-type: pq.StringArray
+          x-go-type-import:
+            path: github.com/lib/pq
           items:
-            $ref: '#/components/schemas/CategoryGet'
+            $ref: '#/components/schemas/HashtagGet'
         user:
           type: object
           properties:
             id:
               type: integer
               format: int32
+              x-oapi-codegen-extra-tags:
+                db: id
             nickname:
               type: string
+              x-oapi-codegen-extra-tags:
+                db: nickname
             profileImage:
               type: string
+              x-oapi-codegen-extra-tags:
+                db: profile_image
         socialLink:
           type: string
+          x-oapi-codegen-extra-tags:
+            db: socialLink
     MentorProfileCreate:
       type: object
       properties:
@@ -1106,30 +1180,50 @@ components:
         id:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: id
         shortDescription:
           type: string
+          x-oapi-codegen-extra-tags:
+            db: shortDescription
         description:
           type: string
+          x-oapi-codegen-extra-tags:
+            db: description
         isHide:
           type: boolean
+          x-oapi-codegen-extra-tags:
+            db: isHide
         mentoringCount:
           type: integer
+          x-oapi-codegen-extra-tags:
+            db: mentoring_count
         createdAt:
           type: string
           format: date-time
+          x-oapi-codegen-extra-tags:
+            db: created_at
         updatedAt:
           type: string
           format: date-time
+          x-oapi-codegen-extra-tags:
+            db: updated_at
         hashtags:
-          type: array
+          x-go-type: pq.StringArray
+          x-go-type-import:
+            path: github.com/lib/pq
           items:
             $ref: '#/components/schemas/HashtagGet'
         categories:
-          type: array
+          x-go-type: pq.StringArray
+          x-go-type-import:
+            path: github.com/lib/pq
           items:
             $ref: '#/components/schemas/CategoryGet'
         socialLink:
           type: string
+          x-oapi-codegen-extra-tags:
+            db: socialLink
     ReservationGet:
       type: object
       properties:
@@ -1137,16 +1231,24 @@ components:
           type: integer
           format: int32
           description: reservation id
+          x-oapi-codegen-extra-tags:
+            db: id
         mentorId:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: mentor_id
         menteeId:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: mentee_id
         category:
           $ref: '#/components/schemas/CategoryGet'
         requestMessage:
           type: string
+          x-oapi-codegen-extra-tags:
+            db: request_message
         status:
           type: string
           format: enum
@@ -1156,6 +1258,8 @@ components:
             - CANCEL
             - PENDING
             - COMPLETE
+          x-oapi-codegen-extra-tags:
+            db: status
         mentorFeedback:
           $ref: '#/components/schemas/MentorFeedbackGet'
         menteeFeedback:
@@ -1165,11 +1269,17 @@ components:
         createdAt:
           type: string
           format: date-time
+          x-oapi-codegen-extra-tags:
+            db: created_at
         updatedAt:
           type: string
           format: date-time
+          x-oapi-codegen-extra-tags:
+            db: updated_at
         hashtags:
-          type: array
+          x-go-type: pq.StringArray
+          x-go-type-import:
+            path: github.com/lib/pq
           items:
             $ref: '#/components/schemas/HashtagGet'
     ReservationCancelReason:
@@ -1177,15 +1287,23 @@ components:
       properties:
         content:
           type: string
+          x-oapi-codegen-extra-tags:
+            db: content
         createdAt:
           type: string
           format: date-time
+          x-oapi-codegen-extra-tags:
+            db: created_at
         requestedUserId:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: requested_user_id
         reservationId:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: reservation_id
     ReservationPagintaion:
       type: object
       properties:
@@ -1200,13 +1318,21 @@ components:
         id:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: id
         email:
           type: string
           format: email
+          x-oapi-codegen-extra-tags:
+            db: email
         nickname:
           type: string
+          x-oapi-codegen-extra-tags:
+            db: nickname
         profileImage:
           type: string
+          x-oapi-codegen-extra-tags:
+            db: profile_image
         role:
           description: required
           type: string
@@ -1214,12 +1340,18 @@ components:
           enum:
             - ADMIN
             - USER
+          x-oapi-codegen-extra-tags:
+            db: role
         createdAt:
           type: string
           format: date-time
+          x-oapi-codegen-extra-tags:
+            db: created_at
         updatedAt:
           type: string
           format: date-time
+          x-oapi-codegen-extra-tags:
+            db: updated_at
         mentorProfile:
           $ref: '#/components/schemas/MentorProfileSimpleGet'
     UserCreate:
@@ -1247,6 +1379,7 @@ components:
       type: object
       properties:
         content:
+          type: array
           items:
             $ref: '#/components/schemas/ReservationGet'
         page:
@@ -1481,6 +1614,7 @@ components:
         default: 0
         type: integer
         format: int32
+      required: true
     TakeQuery:
       in: query
       name: take
@@ -1489,6 +1623,7 @@ components:
         default: 20
         type: integer
         format: int32
+      required: true
     ProfileIdQuery:
       in: query
       name: profile_id
@@ -1510,6 +1645,7 @@ components:
       description: find matched role reservations (ALL is find ALL)
       schema:
         default: ALL
+        type: string
         enum:
           - MENTOR
           - MENTEE
@@ -1528,6 +1664,7 @@ components:
           - DONE
           - CANCEL
         items:
+          type: string
           enum:
             - REQUEST
             - ACCEPT
@@ -1537,7 +1674,6 @@ components:
             - CANCEL
           minItems: 1
           maxItems: 6
-      style: matrix
       explode: false
   securitySchemes:
     NormalUser:
