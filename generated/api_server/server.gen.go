@@ -131,10 +131,10 @@ type HashtagUpdateBody struct {
 
 // HomeGet defines model for HomeGet.
 type HomeGet struct {
-	Categories       *pq.StringArray `json:"categories,omitempty"`
+	Categories       *[]CategoryGet  `db:"categories" json:"categories,omitempty"`
 	CreatedAt        *time.Time      `db:"created_at" json:"createdAt,omitempty"`
 	Description      *string         `db:"description" json:"description,omitempty"`
-	Hashtags         *pq.StringArray `json:"hashtags,omitempty"`
+	Hashtags         *[]HashtagGet   `db:"hashtags" json:"hashtags,omitempty"`
 	Id               *int32          `db:"id" json:"id,omitempty"`
 	IsHide           *bool           `db:"is_hide" json:"isHide,omitempty"`
 	MentoringCount   *int            `db:"mentoring_count" json:"mentoringCount,omitempty"`

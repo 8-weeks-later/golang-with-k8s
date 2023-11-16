@@ -32,17 +32,17 @@ properties:
     x-oapi-codegen-extra-tags:
       db: "updated_at"
   hashtags:
-    x-go-type: pq.StringArray
-    x-go-type-import:
-      path: "github.com/lib/pq"
+    type: array
+    x-oapi-codegen-extra-tags:
+      db: "hashtags"
     items:
       $ref: '../hashtags/get.yaml'
   categories:
-    x-go-type: pq.StringArray
-    x-go-type-import:
-      path: "github.com/lib/pq"
+    type: array
+    x-oapi-codegen-extra-tags:
+      db: "categories"
     items:
-      $ref: '../hashtags/get.yaml'
+      $ref: '../categories/get.yaml'
   user:
     $ref: './user.yaml'
 

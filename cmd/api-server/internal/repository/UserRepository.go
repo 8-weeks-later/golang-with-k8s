@@ -11,9 +11,9 @@ import (
 	"github.com/lib/pq"
 )
 
-func GetUsers(params *api_server.GetUsersParams) (*[]models.User, error) {
+func GetUsers(params *api_server.GetUsersParams) (*[]models.UserGet, error) {
 
-	users := []models.User{}
+	users := []models.UserGet{}
 
 	sql := query.GetUsers
 
@@ -27,8 +27,8 @@ func GetUsers(params *api_server.GetUsersParams) (*[]models.User, error) {
 	return &users, err
 }
 
-func GetUserById(id *api_server.IdPath) (*api_server.UserGet, error) {
-	var user api_server.UserGet
+func GetUserById(id *api_server.IdPath) (*models.UserGet, error) {
+	var user models.UserGet
 
 	sql := query.GetUserById
 
@@ -41,10 +41,10 @@ func GetUserById(id *api_server.IdPath) (*api_server.UserGet, error) {
 	return &user, err
 }
 
-func GetUsersIdReservations(id *api_server.IdPath, params *api_server.GetUsersIdReservationsParams) (*api_server.UserReservationPagination, error) {
+func GetUsersIdReservations(id *api_server.IdPath, params *api_server.GetUsersIdReservationsParams) (*models.UserReservationPagination, error) {
 
-	result := api_server.UserReservationPagination{}
-	reservations := []api_server.ReservationGet{}
+	result := models.UserReservationPagination{}
+	reservations := []models.ReservationGet{}
 	var page *api_server.Page
 
 	db := database.SqlX
@@ -71,8 +71,8 @@ func GetUsersIdReservations(id *api_server.IdPath, params *api_server.GetUsersId
 	return &result, nil
 }
 
-func PatchUser(id *api_server.IdPath, body *api_server.PatchUsersIdJSONRequestBody) (*api_server.UserGet, error) {
-	var user api_server.UserGet
+func PatchUser(id *api_server.IdPath, body *api_server.PatchUsersIdJSONRequestBody) (*models.UserGet, error) {
+	var user models.UserGet
 
 	sql := query.PatchUser
 

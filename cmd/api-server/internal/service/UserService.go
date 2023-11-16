@@ -6,18 +6,18 @@ import (
 	"golang-with-k8s/pkg/models"
 )
 
-func GetUsersService(param *api_server.GetUsersParams) (*[]models.User, error) {
+func GetUsersService(param *api_server.GetUsersParams) (*[]models.UserGet, error) {
 	return repository.GetUsers(param)
 }
 
-func GetUserByIdService(id *api_server.IdPath) (*api_server.UserGet, error) {
+func GetUserByIdService(id *api_server.IdPath) (*models.UserGet, error) {
 	return repository.GetUserById(id)
 }
 
-func GetUsersIdReservationService(id *api_server.IdPath, params *api_server.GetUsersIdReservationsParams) (*api_server.UserReservationPagination, error) {
+func GetUsersIdReservationService(id *api_server.IdPath, params *api_server.GetUsersIdReservationsParams) (*models.UserReservationPagination, error) {
 	return repository.GetUsersIdReservations(id, params)
 }
 
-func PatchUserService(id *api_server.IdPath, body *api_server.PatchUsersIdJSONRequestBody) (*api_server.UserGet, error) {
+func PatchUserService(id *api_server.IdPath, body *api_server.PatchUsersIdJSONRequestBody) (*models.UserGet, error) {
 	return repository.PatchUser(id, body)
 }

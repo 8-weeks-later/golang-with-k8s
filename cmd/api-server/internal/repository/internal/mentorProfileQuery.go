@@ -14,8 +14,8 @@ const (
 	m.created_at as created_at,
 	m.updated_at as updated_at,
 	m.ishide as is_hide,
-	array_agg(DISTINCT c.name) FILTER (WHERE c.name IS NOT NULL) as "categories",
-	array_agg(DISTINCT h.tag_name) FILTER (WHERE h.tag_name IS NOT NULL)  as "hashtags",
+	json_agg(DISTINCT jsonb_build_object('id', c.id, 'name', c.name)) FILTER (WHERE c.name IS NOT NULL) as "categories",
+	json_agg(DISTINCT jsonb_build_object('id', h.id, 'name', h.tag_name)) FILTER (WHERE h.tag_name IS NOT NULL)  as "hashtags",
 	u.id as "user.id",
 	u.nickname as "user.nickname",
 	u.profile_image as "user.profile_image"

@@ -2,8 +2,6 @@ package models
 
 import (
 	"time"
-
-	"github.com/lib/pq"
 )
 
 type MentorProfile struct {
@@ -15,6 +13,20 @@ type MentorProfile struct {
 	CreatedAt        *time.Time     `json:"createdAt,omitempty" db:"created_at"`
 	UpdatedAt        *time.Time     `json:"updatedAt,omitempty" db:"updated_at"`
 	SocialLink       *string        `json:"socialLink,omitempty" db:"socialLink"`
-	Hashtags         pq.StringArray `json:"hashtags,omitempty" db:"hashtags"`
-	Categories       pq.StringArray `json:"categories,omitempty" db:"categories"`
+	Categories       CategorySlices `db:"categories" json:"categories,omitempty"`
+	Hashtags         HashtagSlices  `db:"hashtags" json:"hashtags,omitempty"`
+}
+
+// MentorProfileSimpleGet defines model for MentorProfileSimpleGet.
+type MentorProfileSimpleGet struct {
+	Categories       CategorySlices `db:"categories" json:"categories,omitempty"`
+	CreatedAt        *time.Time     `db:"created_at" json:"createdAt,omitempty"`
+	Description      *string        `db:"description" json:"description,omitempty"`
+	Hashtags         HashtagSlices  `db:"hashtags" json:"hashtags,omitempty"`
+	Id               *int32         `db:"id" json:"id,omitempty"`
+	IsHide           *bool          `db:"isHide" json:"isHide,omitempty"`
+	MentoringCount   *int           `db:"mentoring_count" json:"mentoringCount,omitempty"`
+	ShortDescription *string        `db:"shortDescription" json:"shortDescription,omitempty"`
+	SocialLink       *string        `db:"socialLink" json:"socialLink,omitempty"`
+	UpdatedAt        *time.Time     `db:"updated_at" json:"updatedAt,omitempty"`
 }

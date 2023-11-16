@@ -19,8 +19,8 @@ const (
 	mp.mentoring_count as "mentorprofile.mentoring_count", 
 	mp.isHide as "mentorprofile.isHide", 
 	mp.shortDescription as "mentorprofile.shortDescription",
-	array_agg(DISTINCT c.name) FILTER (WHERE c.name IS NOT NULL) as "mentorprofile.categories",
-	array_agg(DISTINCT h.tag_name) FILTER (WHERE h.tag_name IS NOT NULL)  as "mentorprofile.hashtags"
+	json_agg(DISTINCT jsonb_build_object('id', c.id, 'name', c.name)) FILTER (WHERE c.name IS NOT NULL) as "mentorprofile.categories",
+	json_agg(DISTINCT jsonb_build_object('id', h.id, 'name', h.tag_name)) FILTER (WHERE h.tag_name IS NOT NULL)  as "mentorprofile.hashtags",
 	FROM users u
 	right join mentor_profiles mp on mp.user_id = u.id
 	left join _profiles_categories pc on pc.B = mp.id
@@ -46,8 +46,8 @@ const (
 	mp.mentoring_count as "mentorprofile.mentoring_count", 
 	mp.isHide as "mentorprofile.isHide", 
 	mp.shortDescription as "mentorprofile.shortDescription",
-	array_agg(DISTINCT c.name) FILTER (WHERE c.name IS NOT NULL) as "mentorprofile.categories",
-	array_agg(DISTINCT h.tag_name) FILTER (WHERE h.tag_name IS NOT NULL)  as "mentorprofile.hashtags"
+	json_agg(DISTINCT jsonb_build_object('id', c.id, 'name', c.name)) FILTER (WHERE c.name IS NOT NULL) as "mentorprofile.categories",
+	json_agg(DISTINCT jsonb_build_object('id', h.id, 'name', h.tag_name)) FILTER (WHERE h.tag_name IS NOT NULL)  as "mentorprofile.hashtags",
 	FROM users u 
 	right join mentor_profiles mp on mp.user_id = u.id
 	left join _profiles_categories pc on pc.B = mp.id
@@ -86,7 +86,7 @@ const (
 	cr.requested_user_id as "cancelreason.requested_user_id",
 	c.id as "category.id",
 	c.name as "category.name",
-	array_agg(DISTINCT h.tag_name) FILTER (WHERE h.tag_name IS NOT NULL)  as "hashtags"
+	json_agg(DISTINCT jsonb_build_object('id', h.id, 'name', h.tag_name)) FILTER (WHERE h.tag_name IS NOT NULL)  as "hashtags",
 	from reservations r
 	right join mentor_profiles mp on mp.user_id = r.mentor_id
 	left join _profiles_categories pc on pc.B = mp.id

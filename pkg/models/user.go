@@ -1,16 +1,23 @@
 package models
 
 import (
+	"golang-with-k8s/generated/api_server"
 	"time"
+
+	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
-type User struct {
-	ID            int            `json:"id,omitempty" db:"id"`
-	Email         *string        `json:"email,omitempty" db:"email"`
-	Nickname      *string        `json:"nickname,omitempty" db:"nickname"`
-	ProfileImage  *string        `json:"profileImage,omitempty" db:"profile_image"`
-	Role          *UserRole      `json:"role,omitempty" db:"role"`
-	CreatedAt     *time.Time     `json:"createdAt,omitempty" db:"created_at"`
-	UpdatedAt     *time.Time     `json:"updatedAt,omitempty" db:"updated_at"`
-	MentorProfile *MentorProfile `json:"mentorProfile,omitempty"`
+//Implement user_get.
+
+type UserGet struct {
+	CreatedAt     *time.Time              `db:"created_at" json:"createdAt,omitempty"`
+	Email         *openapi_types.Email    `db:"email" json:"email,omitempty"`
+	Id            *int32                  `db:"id" json:"id,omitempty"`
+	MentorProfile *MentorProfileSimpleGet `json:"mentorProfile,omitempty"`
+	Nickname      *string                 `db:"nickname" json:"nickname,omitempty"`
+	ProfileImage  *string                 `db:"profile_image" json:"profileImage,omitempty"`
+
+	// Role required
+	Role      *api_server.UserGetRole `db:"role" json:"role,omitempty"`
+	UpdatedAt *time.Time              `db:"updated_at" json:"updatedAt,omitempty"`
 }
