@@ -15,11 +15,10 @@ func SearchMentor(searchString *api_server.SearchStringPath, params *api_server.
 	sql := query.GetSearchMentorWhereQuery(searchString, params)
 	sql += query.GetSearchMentorGroupbyQuery()
 
-	err := db.Select(&result, sql, false, "%"+"t"+"%", params.Take, params.Take*params.Page)
+	err := db.Select(&result, sql, false, "%"+string(*searchString)+"%", params.Take, params.Take*params.Page)
 	if err != nil {
 		fmt.Println(err)
 		return nil, err
 	}
-
 	return &result, nil
 }
