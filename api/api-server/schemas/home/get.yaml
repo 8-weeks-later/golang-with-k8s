@@ -3,28 +3,46 @@ properties:
   id:
     type: integer
     format: int32
+    x-oapi-codegen-extra-tags:
+      db: "id"
   shortDescription:
     type: string
+    x-oapi-codegen-extra-tags:
+      db: "short_description"
   description:
     type: string
+    x-oapi-codegen-extra-tags:
+      db: "description"
   isHide:
     type: boolean
+    x-oapi-codegen-extra-tags:
+      db: "is_hide"
   mentoringCount:
     type: integer
+    x-oapi-codegen-extra-tags:
+      db: "mentoring_count"
   createdAt:
     type: string
     format: date-time
+    x-oapi-codegen-extra-tags:
+      db: "created_at"
   updatedAt:
     type: string
     format: date-time
+    x-oapi-codegen-extra-tags:
+      db: "updated_at"
   hashtags:
-    type: array
+    x-go-type: pq.StringArray
+    x-go-type-import:
+      path: "github.com/lib/pq"
     items:
       $ref: '../hashtags/get.yaml'
   categories:
-    type: array
+    x-go-type: pq.StringArray
+    x-go-type-import:
+      path: "github.com/lib/pq"
     items:
-      $ref: '../categories/get.yaml'
+      $ref: '../hashtags/get.yaml'
   user:
     $ref: './user.yaml'
 

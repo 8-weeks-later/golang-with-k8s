@@ -57,7 +57,6 @@ func GetUsersIdReservations(id *api_server.IdPath, params *api_server.GetUsersId
 		fmt.Println(err)
 		return nil, err
 	}
-	fmt.Println(reservations)
 
 	var count int32
 
@@ -66,7 +65,6 @@ func GetUsersIdReservations(id *api_server.IdPath, params *api_server.GetUsersId
 	cntsql += ";"
 	row := db.QueryRow(cntsql, pq.Array(params.Status), strconv.Itoa(int(*id)))
 	row.Scan(&count)
-
 	page = query.GetPageStruct(&count, &params.Page, &params.Take)
 	result.Content = &reservations
 	result.Page = page

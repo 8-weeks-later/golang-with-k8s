@@ -5,7 +5,7 @@ servers:
   - description: 42 MANITO API SERVER
     url: 'https://api.42manito.com/'
   - description: 42 MANITO API LOCAL TEST
-    url: 'http://localhost:3000'
+    url: 'http://localhost:10001'
 
 info:
   version: '1.0.0'

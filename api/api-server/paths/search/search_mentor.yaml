@@ -12,22 +12,19 @@ get:
       description: search by nickname `default = true`
       schema:
         default: true
-        type: string
-        format: 'true | false'
+        type: boolean
     - in: query
       name: search_by_hashtag_name
       description: search by tag name `default = true`
       schema:
         default: true
-        type: string
-        format: 'true | false'
+        type: boolean
     - in: query
       name: search_by_category_name
       description: search by category name `default = true`
       schema:
         default: true
-        type: string
-        format: 'true | false'
+        type: boolean
   responses:
     '200':
       description: OK

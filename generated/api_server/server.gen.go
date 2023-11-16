@@ -131,23 +131,23 @@ type HashtagUpdateBody struct {
 
 // HomeGet defines model for HomeGet.
 type HomeGet struct {
-	Categories       *[]CategoryGet  `json:"categories,omitempty"`
-	CreatedAt        *time.Time      `json:"createdAt,omitempty"`
-	Description      *string         `json:"description,omitempty"`
-	Hashtags         *[]HashtagGet   `json:"hashtags,omitempty"`
-	Id               *int32          `json:"id,omitempty"`
-	IsHide           *bool           `json:"isHide,omitempty"`
-	MentoringCount   *int            `json:"mentoringCount,omitempty"`
-	ShortDescription *string         `json:"shortDescription,omitempty"`
-	UpdatedAt        *time.Time      `json:"updatedAt,omitempty"`
+	Categories       *pq.StringArray `json:"categories,omitempty"`
+	CreatedAt        *time.Time      `db:"created_at" json:"createdAt,omitempty"`
+	Description      *string         `db:"description" json:"description,omitempty"`
+	Hashtags         *pq.StringArray `json:"hashtags,omitempty"`
+	Id               *int32          `db:"id" json:"id,omitempty"`
+	IsHide           *bool           `db:"is_hide" json:"isHide,omitempty"`
+	MentoringCount   *int            `db:"mentoring_count" json:"mentoringCount,omitempty"`
+	ShortDescription *string         `db:"short_description" json:"shortDescription,omitempty"`
+	UpdatedAt        *time.Time      `db:"updated_at" json:"updatedAt,omitempty"`
 	User             *HomeSimpleUser `json:"user,omitempty"`
 }
 
 // HomeSimpleUser defines model for HomeSimpleUser.
 type HomeSimpleUser struct {
-	Id           *int32  `json:"id,omitempty"`
-	Nickname     *string `json:"nickname,omitempty"`
-	ProfileImage *string `json:"profileImage,omitempty"`
+	Id           *int32  `db:"id" json:"id,omitempty"`
+	Nickname     *string `db:"nickname" json:"nickname,omitempty"`
+	ProfileImage *string `db:"profile_image" json:"profileImage,omitempty"`
 }
 
 // MenteeFeedbackCreate defines model for MenteeFeedbackCreate.
@@ -598,13 +598,13 @@ type GetSearchMentorSearchStringParams struct {
 	Page PageQuery `form:"page" json:"page"`
 
 	// SearchByUserNickname search by nickname `default = true`
-	SearchByUserNickname *string `form:"search_by_user_nickname,omitempty" json:"search_by_user_nickname,omitempty"`
+	SearchByUserNickname *bool `form:"search_by_user_nickname,omitempty" json:"search_by_user_nickname,omitempty"`
 
 	// SearchByHashtagName search by tag name `default = true`
-	SearchByHashtagName *string `form:"search_by_hashtag_name,omitempty" json:"search_by_hashtag_name,omitempty"`
+	SearchByHashtagName *bool `form:"search_by_hashtag_name,omitempty" json:"search_by_hashtag_name,omitempty"`
 
 	// SearchByCategoryName search by category name `default = true`
-	SearchByCategoryName *string `form:"search_by_category_name,omitempty" json:"search_by_category_name,omitempty"`
+	SearchByCategoryName *bool `form:"search_by_category_name,omitempty" json:"search_by_category_name,omitempty"`
 }
 
 // GetUsersParams defines parameters for GetUsers.

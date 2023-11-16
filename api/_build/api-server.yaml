@@ -5,7 +5,7 @@ servers:
   - description: 42 MANITO API SERVER
     url: 'https://api.42manito.com/'
   - description: 42 MANITO API LOCAL TEST
-    url: 'http://localhost:3000'
+    url: 'http://localhost:10001'
 info:
   version: 1.0.0
   title: 42-manito-api
@@ -743,22 +743,19 @@ paths:
           description: search by nickname `default = true`
           schema:
             default: true
-            type: string
-            format: true | false
+            type: boolean
         - in: query
           name: search_by_hashtag_name
           description: search by tag name `default = true`
           schema:
             default: true
-            type: string
-            format: true | false
+            type: boolean
         - in: query
           name: search_by_category_name
           description: search by category name `default = true`
           schema:
             default: true
-            type: string
-            format: true | false
+            type: boolean
       responses:
         '200':
           description: OK
@@ -926,28 +923,46 @@ components:
         id:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: id
         shortDescription:
           type: string
+          x-oapi-codegen-extra-tags:
+            db: short_description
         description:
           type: string
+          x-oapi-codegen-extra-tags:
+            db: description
         isHide:
           type: boolean
+          x-oapi-codegen-extra-tags:
+            db: is_hide
         mentoringCount:
           type: integer
+          x-oapi-codegen-extra-tags:
+            db: mentoring_count
         createdAt:
           type: string
           format: date-time
+          x-oapi-codegen-extra-tags:
+            db: created_at
         updatedAt:
           type: string
           format: date-time
+          x-oapi-codegen-extra-tags:
+            db: updated_at
         hashtags:
-          type: array
+          x-go-type: pq.StringArray
+          x-go-type-import:
+            path: github.com/lib/pq
           items:
             $ref: '#/components/schemas/HashtagGet'
         categories:
-          type: array
+          x-go-type: pq.StringArray
+          x-go-type-import:
+            path: github.com/lib/pq
           items:
-            $ref: '#/components/schemas/CategoryGet'
+            $ref: '#/components/schemas/HashtagGet'
         user:
           $ref: '#/components/schemas/HomeSimpleUser'
     HomeSimpleUser:
@@ -956,10 +971,16 @@ components:
         id:
           type: integer
           format: int32
+          x-oapi-codegen-extra-tags:
+            db: id
         nickname:
           type: string
+          x-oapi-codegen-extra-tags:
+            db: nickname
         profileImage:
           type: string
+          x-oapi-codegen-extra-tags:
+            db: profile_image
     MenteeFeedbackGet:
       type: object
       properties:
