@@ -21,7 +21,7 @@ var ConfigInstance IConfig
 func (c *config) loadEnvfile(envfilePath *string, keys []string) {
 	err := godotenv.Load(*envfilePath)
 	if err != nil {
-		panic("Error loading .env file")
+		panic("Error loading .env.dev file")
 	}
 	for _, key := range keys {
 		c.Env[key] = os.Getenv(key)
@@ -43,13 +43,14 @@ func init() {
 
 	deploy_mode := os.Getenv("ENVIROMENT")
 	if deploy_mode == "production" {
-		envFilePath = ".env.prod"
+		envFilePath = ".env.dev.prod"
 	} else {
-		envFilePath = ".env.dev"
+		envFilePath = ".env.dev.dev"
 	}
 
 	ConfigInstance.loadEnvfile(&envFilePath, []string{"GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET", "GOOGLE_LOGIN_CALLBACK"})
 	ConfigInstance.loadEnvfile(&envFilePath, []string{"FT_CLIENT_ID", "FT_CLIENT_SECRET", "FT_LOGIN_CALLBACK"})
 	ConfigInstance.loadEnvfile(&envFilePath, []string{"URL"})
 	ConfigInstance.loadEnvfile(&envFilePath, []string{"SESSION_SECRET"})
+	ConfigInstance.loadEnvfile(&envFilePath, []string{"QUEUE_URI", "QUEUE_PORT", "QUEUE_USER", "QUEUE_PASSWORD", "QUEUE_NAME"})
 }

@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"golang-with-k8s/cmd/api-server/internal/service"
+	"golang-with-k8s/cmd/apiserver/service"
 	"golang-with-k8s/generated/api_server"
 
 	"github.com/labstack/echo/v4"

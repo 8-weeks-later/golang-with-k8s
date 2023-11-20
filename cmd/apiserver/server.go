@@ -1,28 +1,34 @@
-package main
+package apiServer
 
 import (
-	"golang-with-k8s/cmd/api-server/internal"
-	"golang-with-k8s/generated/api_server"
-
-	//database 초기화
-	"golang-with-k8s/pkg/config"
-	_ "golang-with-k8s/pkg/database"
-
 	"github.com/gorilla/sessions"
 	"github.com/labstack/echo-contrib/echoprometheus"
 	"github.com/labstack/echo-contrib/session"
-	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	controller2 "golang-with-k8s/cmd/apiserver/controller"
+	"golang-with-k8s/generated/api_server"
+	"golang-with-k8s/pkg/config"
 )
 
-func main() {
+type Server struct {
+	controller2.AuthController
+	controller2.CategoryController
+	controller2.HomeController
+	controller2.MenteeFeedbackController
+	controller2.MentorFeedbackController
+	controller2.MentorProfileController
+	controller2.HashtagController
+	controller2.ReservationController
+	controller2.UserController
+	controller2.SearchController
+}
 
-	e := echo.New()
+func Start() {
+	server := &Server{}
+	api_server.ApiServerRegisterHandlers(e, server)
+
 	//logger
 	// e.Use(echomiddleware.Logger())
-
-	server := internal.NewServer()
-	api_server.ApiServerRegisterHandlers(e, server)
 
 	//cors
 	e.Use(middleware.CORSWithConfig(middleware.DefaultCORSConfig))

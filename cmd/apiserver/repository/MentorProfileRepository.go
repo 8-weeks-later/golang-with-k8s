@@ -2,7 +2,7 @@ package repository
 
 import (
 	"fmt"
-	query "golang-with-k8s/cmd/api-server/internal/repository/internal"
+	"golang-with-k8s/cmd/apiserver/repository/internal"
 	"golang-with-k8s/generated/api_server"
 	"golang-with-k8s/pkg/database"
 	"golang-with-k8s/pkg/models"
